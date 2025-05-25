@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-
 	_ "github.com/lib/pq"
 )
 
@@ -36,7 +35,7 @@ func Migrate(cfg *Config) error {
 	}
 
 	// read schema file
-	schema, err := os.ReadFile("schema.sql")
+	schema, err := os.ReadFile("db/migrate/schema.sql")
 	if err != nil {
 		return fmt.Errorf("error reading schema file: %v", err)
 	}
