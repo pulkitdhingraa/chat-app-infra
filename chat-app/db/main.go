@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	"chat-app/db/migrate"
+	"chat-app/db/ops"
 )
 
 func main() {

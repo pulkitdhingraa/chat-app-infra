@@ -35,7 +35,7 @@ func Migrate(cfg *Config) error {
 	}
 
 	// read schema file
-	schema, err := os.ReadFile("db/migrate/schema.sql")
+	schema, err := os.ReadFile("db/ops/schema.sql")
 	if err != nil {
 		return fmt.Errorf("error reading schema file: %v", err)
 	}
