@@ -1,6 +1,7 @@
-package db
+package dbops
 
 import (
+	"chat-app/server/config"
 	"database/sql"
 	"fmt"
 	"log"
@@ -8,22 +9,10 @@ import (
 	_ "github.com/lib/pq"
 )
 
-type Config struct {
-	DB_HOST     string
-	DB_PORT     int
-	DB_USER     string
-	DB_PASSWORD string
-	DB_NAME     string
-	DB_SSLMODE  string
-}
-
-func (c *Config) DSN() string {
-	return fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=%s", c.DB_HOST, c.DB_PORT, c.DB_USER, c.DB_PASSWORD, c.DB_NAME, c.DB_SSLMODE)
-}
-
-func Migrate(cfg *Config) error {
+func Migrate() error {
 	// estabilish Connection
-	db, err := sql.Open("postgres", cfg.DSN())
+	c := config.AppConfig
+	db, err := sql.Open("postgres", c.GetDSN())
 	if err != nil {
 		return fmt.Errorf("failed to connect to the database: %v", err)
 	}
